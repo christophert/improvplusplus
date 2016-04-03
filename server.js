@@ -31,7 +31,6 @@ wsServer.on('request', function(request) {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
             username = json_msg.username;
-            console.log(json_msg);
 	    
 	    var num_msgs = 0;
 	
@@ -47,9 +46,10 @@ wsServer.on('request', function(request) {
 	    fb_messages.child(num_msgs).set({
 		obj
 	    });
-	    console.log(message);
+	    console.log(json_msg);
 	    num_msgs++;
 	    fb.child("num_msgs").set(num_msgs);
+	    console.log(num_msgs);
 
             for(var i = 0; i < clients.length; i++) {
                 clients[i].sendUTF(obj);
