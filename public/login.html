@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin</title>
+    <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -58,8 +58,6 @@
         border-top-right-radius: 0;
       }
     </style>
-	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   </head>
 
   <body>
@@ -91,18 +89,16 @@
         </div>
       </div>
   </div>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script>
     window.onload = function() {
-
       var form = document.getElementById('sign-form');
       var messageField = document.getElementById('email');
       var messageField1 = document.getElementById('password');
-
       form.onsubmit = function(e) {
         e.preventDefault();
-
         // Retrieve the message from the textarea.
         var json = {
           "username": messageField.value,
@@ -111,11 +107,10 @@
         var message = JSON.stringify(json);
         $.post( "/login", $("#sign-form").serialize() )
             .done(function(data) {
-                window.location.href = '/';
+                alert("data returned: " + data);
             });
         messageField.value = '';
         messageField1.value = '';
-
         return false;
       };
 

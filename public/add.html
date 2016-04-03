@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Improv++</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<link rel="stylesheet" href="style.css">
@@ -37,7 +38,8 @@
           <a class="navbar-brand" href="#">Improv Comedy</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-    
+    		<li id="login"><a href="/login.html">Login</a></li>
+            <li id="loggedIn" style="display:hidden"></li>
         </div>
       </div>
     </nav>
@@ -56,7 +58,7 @@
           			<form>
 					  <div class="form-group">
 					    <label for="exampleInputEmail1">Scene Description 200 characters or less</label>
-					    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+					    <input class="form-control" id="scene" placeholder="">
 					  </div>
 					  <button type="submit" class="btn btn-default">Submit</button>
 					</form>
