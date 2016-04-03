@@ -1,3 +1,11 @@
+$.get("/get/username", function(data) {
+    parsedData = JSON.parse(data);
+    $("#loggedIn").html("Welcome " + data.username);
+    $("#login").hide();
+    $("#signup").hide();
+    $("#loggedIn").show();
+});
+
 window.onload = function() {
 
   // Get references to elements on the page.

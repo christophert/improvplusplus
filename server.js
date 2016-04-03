@@ -42,7 +42,8 @@ app.post('/login', function(req, res) {
     } else {
         var info = {};
         info['loginStatus'] = 'notFound';
-        res.send(JSON.stringify(info));
+        res.status(404)
+            .send(JSON.stringify(info));
     }
 });
 
