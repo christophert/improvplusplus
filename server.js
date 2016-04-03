@@ -121,9 +121,8 @@ wsServer.on('request', function(request) {
                 fb.child("num_msgs").set(num_msgs);
                 console.log(num_msgs);
 
-                    for(var i = 0; i < clients.length; i++) {
-                        clients[i].sendUTF(obj);
-                    }
+                for(var i = 0; i < clients.length; i++) {
+                    clients[i].sendUTF(obj);
                 }
             }
         }
