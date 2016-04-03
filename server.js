@@ -6,8 +6,9 @@ var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
+var fb = new Firebase("radiant-torch-7198.firebaseIO.com");
+
 var server = my_http.createServer(function(request,response){
-    var fb = new Firebase("https://radiant-torch-7198.firebaseio.com");
     //TODO serve front-end objects
 }).listen(3000,'0.0.0.0');
 
@@ -29,8 +30,23 @@ wsServer.on('request', function(request) {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
             console.log(json_msg);
+	    
+	    
+	    var num_msgs = 0;
+	
+	    //get number of messages
+	    fb.on("num_msgs", function(snapshot) {
+		num_msgs = snapshot.val());
+	    }, 
+	    function (errorObject) {
+		fb.child("num_msgs").set(1);
+		num_msgs++;
+	    }		
 
-	    //TODO put message into firebase, see if message parts need to be picked out piece by piece`    
+	    var fb_messages = fb.child("messages");
+	    fb_messages.child(0).set({
+		message
+	    });
 
             for(var i = 0; i < clients.length; i++) {
                 clients[i].sendUTF(obj);
