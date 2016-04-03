@@ -49,24 +49,18 @@ app.use(session({
 var sess;
 
 app.post('/login', function(req, res) {
-    var info = {};
-    info['username'] = req.body.username;
-    info['password'] = req.body.password;
-
-    var auth = fb.child("users").child(req.body.username).on("value", function(snapshot)) {
-        if (snapshot.val() === req.body.password) {
-            info['loginStatus'] = 'OK';
-	    req.session.user_id = req.body.username;
-	    res.send(JSON.stringify(info));
-        }
-        else {
-	    info['loginStatus'] = 'notFound';
-            res.status(404).send(JSON.stringify(info));
-	}
-    }, function (errorObject) {
-	var info = {};
-	info['loginStatus'] = 'notFound';
-	res.status(404).send(JSON.stringify(info));   
+    if(req.body.username !== ""  && req.body.password !== "") {
+        var info = {};
+        info['username'] = req.body.username;
+        info['password'] = req.body.password;
+        info['loginStatus'] = 'OK';
+        req.session.user_id = req.body.username;
+        res.send(JSON.stringify(info));
+    } else {
+        var info = {};
+        info['loginStatus'] = 'notFound';
+        res.status(404)
+            .send(JSON.stringify(info));
     }
 });
 
