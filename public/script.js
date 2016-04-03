@@ -55,7 +55,7 @@ window.onload = function() {
     // Retrieve the message from the textarea.
     var json = {
         "message": messageField.value,
-        "username": "yogert96"
+        "username": document.getElementById("loggedIn").value
     };
     var message = JSON.stringify(json);
 
