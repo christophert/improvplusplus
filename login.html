@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #ecf0f1;
+      }
+
+      .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin .checkbox {
+        font-weight: normal;
+      }
+      .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .form-signin .form-control:focus {
+        z-index: 2;
+      }
+      .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+  <div class="bg">
+    <div class="col-md-4" style="  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+       <div class="panel panel-primary" style="border-color: #2c3e50;">
+          <div class="panel-heading" style="border-color: #2c3e50; background-color:#2c3e50;">
+            <h2 class="form-signin-heading">Sign In</h2>
+          </div>
+          <div class="panel-body">
+             <ul class="media-list">
+                <li class="media">
+                   <div class="media-body">
+                      <div class="media">
+                         <div class="media-body" >
+                            <form id="sign-form" class="form-signin" action="#" method="post">
+                              <label for="inputEmail" class="sr-only">Email address</label>
+                              <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus style="margin-bottom: 15px;">
+                              <label for="inputPassword" class="sr-only">Password</label>
+                              <input type="password" id="password" class="form-control" placeholder="Password" required style="margin-bottom: 15px;">
+                              <button class="btn btn-lg btn-block" type="submit" style="background-color: #2ecc71">Sign in</button>
+                            </form>
+                         </div>
+                      </div>
+                   </div>
+                </li>
+             </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script>
+    window.onload = function() {
+
+      var form = document.getElementById('sign-form');
+      var messageField = document.getElementById('email');
+      var messageField1 = document.getElementById('password');
+
+      var socket = new WebSocket('ws://ipp.chtr.us/login');
+
+      form.onsubmit = function(e) {
+        e.preventDefault();
+
+        // Retrieve the message from the textarea.
+        var json = {
+          "username": messageField.value,
+          "password": messageField2.value
+        };
+        var message = JSON.stringify(json);
+        socket.send(message);
+        messageField.value = '';
+        messageField1.value = '';
+
+        return false;
+      };
+
+    };
+
+  </script>
+  </body>
+</html>
