@@ -15,8 +15,7 @@ my_http.createServer(function(request,response){
 	          response.end();
 	      }
 	      else{
-	          //opens firebase connection (not sure if we need it right here,
-	          //just for reference's sake)
+	          // a reference here doesn't open a connection until r/w ops are invoked
 	          var fb = new Firebase("https://improvplusplus.firebaseio.com")
 	          
 	      }
