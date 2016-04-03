@@ -50,6 +50,8 @@ wsServer.on('request', function(request) {
     });
 
     connection.on('close', function(reasonCode, description) {
-        clients[i].sendUTF(JSON.stringify({message: 'User disconnected.'}));
+        for(var i = 0; i < clients.length; i++) {
+            clients[i].sendUTF(JSON.stringify({message: 'User disconnected.'}));
+        }
     });
 });
