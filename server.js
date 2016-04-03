@@ -131,6 +131,7 @@ wsServer.on('request', function(request) {
     });
 
     connection.on('close', function(reasonCode, description) {
+        del usernames[index];
         for(var i = 0; i < clients.length; i++) {
             clients[i].sendUTF(JSON.stringify({username: username, message: 'User disconnected.', date: (new Date()).getTime()}));
         }
