@@ -29,11 +29,7 @@ users.set({
     }
 });
 
-var server = my_http.createServer(app).listen(3000,'0.0.0.0');
 
-wsServer = new WebSocketServer({
-    httpServer: server
-});
 
 var history = [];
 var clients = [];
@@ -84,6 +80,12 @@ app.get('/get/username', function(req, res) {
 });
 
 app.use('/', express.static('public'));
+
+var server = my_http.createServer(app).listen(3000,'0.0.0.0');
+
+wsServer = new WebSocketServer({
+    httpServer: server
+});
 
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
