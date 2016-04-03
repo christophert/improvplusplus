@@ -18,6 +18,19 @@ var server = my_http.createServer(app).listen(3000,'0.0.0.0');
 
 wsServer = new WebSocketServer({
     httpServer: server
+
+    var users = fb.child("users");
+    users.set({
+	PatrickPistor:{
+	    Password: "password"
+	},
+	ChrisTran:{
+	    Password: "password"
+	},
+	KevinKong:{
+	    Password: "password"
+	}
+    })
 });
 
 var history = [];
@@ -32,18 +45,24 @@ app.use(session({
 
 
 app.post('/login', function(req, res) {
-    if(req.body.username !== ""  && req.body.password !== "") {
-        var info = {};
-        info['username'] = req.body.username;
-        info['password'] = req.body.password;
-        info['loginStatus'] = 'OK';
-        req.session.user_id = req.body.username;
-        res.send(JSON.stringify(info));
-    } else {
-        var info = {};
-        info['loginStatus'] = 'notFound';
-        res.status(404)
-            .send(JSON.stringify(info));
+    var info = {};
+    info['username'] = req.body.username;
+    info['password'] = req.body.password;
+
+    var auth = fb.child("users").child(req.body.username).on("value", function(snapshot)) {
+        if (snapshot.val() === req.body.password) {
+            info['loginStatus'] = 'OK';
+	    req.session.user_id = req.body.username;
+	    res.send(JSON.stringify(info));
+        }
+        else {
+	    info['loginStatus'] = 'notFound';
+            res.status(404).send(JSON.stringify(info));
+	}
+    }, function (errorObject) {
+	var info = {};
+	info['loginStatus'] = 'notFound';
+	res.status(404).send(JSON.stringify(info));   
     }
 });
 
