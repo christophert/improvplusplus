@@ -67,7 +67,7 @@ app.post('/login', function(req, res) {
 	var info = {};
 	info['loginStatus'] = 'notFound';
 	res.status(404).send(JSON.stringify(info));   
-    }
+    });
 });
 
 app.get('/get/username', function(req, res) {
