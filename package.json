@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/christophert/improvplusplus#readme",
   "dependencies": {
-    "firebase": "^2.4.2"
+    "firebase": "^2.4.2",
+    "websocket": "^1.0.22"
   }
 }
