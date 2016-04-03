@@ -43,10 +43,8 @@ wsServer.on('request', function(request) {
             var json_msg = JSON.parse(obj);
             console.log(json_msg);
 
-	    
-
             for(var i = 0; i < clients.length; i++) {
-                clients[i].sendUTF(json_msg);
+                clients[i].sendUTF(json_msg.message);
             }
         }
     });
