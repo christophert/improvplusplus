@@ -24,4 +24,4 @@ my_http.createServer(function(request,response){
 
 my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathname;
-}).listen(0.0.0.0:3000);
+}).listen(3000,0.0.0.0);
