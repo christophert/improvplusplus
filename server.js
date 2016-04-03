@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+var stormpath = require('express-stormpath');
 
 var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
@@ -41,42 +41,32 @@ var num_msgs = 0;
 
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(session({
-    store: sessionStore,
-    secret: 'keyboard cat'
+app.use(stormpath.init(app, {
+    client: {
+        apiKey: {
+            id: '3QI3SYEB0OGRP00C2TUDJCUGX',
+            secret: 'WwZ2iU9x4HkXwcGSFjEnL5hy5KcLc31rOFLOV/dmwWc'
+        }
+    },
+    application: {
+        href: 'https://api.stormpath.com/v1/applications/1ZaIXY48DTOswO9TRiafxW'
+    },
+    web: {
+        login: {
+            uri: '/'
+        }
+    }
 }));
 
+app.get('/get/username', stormpath.getUser, function(req, res) {
+    res.send(JSON.stringify({"username": req.user.email}));
+});
+
+app.on('stormpath.ready' function() {
+    console.log('stormpath ready');
+});
+
 var sess;
-
-app.post('/login', function(req, res) {
-    if(req.body.username !== ""  && req.body.password !== "") {
-        var info = {};
-        info['username'] = req.body.username;
-        info['password'] = req.body.password;
-        info['loginStatus'] = 'OK';
-        req.session.user_id = req.body.username;
-        req.session.save(function(err){});
-        res.send(JSON.stringify(info));
-    } else {
-        var info = {};
-        info['loginStatus'] = 'notFound';
-        res.status(404)
-            .send(JSON.stringify(info));
-    }
-});
-
-app.get('/get/username', function(req, res) {
-    sessionStore.get(req.sessionID, function(error, session) {
-        console.log(error);
-        console.log(session);
-        if(!session.user_id) {
-            res.status(404).send(JSON.stringify({"status":404}));
-        } else {
-            res.send(JSON.stringify({"username":session.user_id}))
-        }
-    });
-
-});
 
 app.use('/', express.static('public'));
 
