@@ -44,7 +44,7 @@ wsServer.on('request', function(request) {
             console.log(json_msg);
 
             for(var i = 0; i < clients.length; i++) {
-                clients[i].sendUTF(json_msg.message);
+                clients[i].sendUTF(obj);
             }
         }
     });
