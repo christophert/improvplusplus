@@ -15,23 +15,24 @@ var reqobj = require("request")
 var fb = new Firebase("improvplusplus.firebaseIO.com");
 var sessionStore = new session.MemoryStore();
 
+
+var users = fb.child("users");
+users.set({
+    PatrickPistor:{
+        Password: "password"
+    },
+    ChrisTran:{
+        Password: "password"
+    },
+    KevinKong:{
+        Password: "password"
+    }
+});
+
 var server = my_http.createServer(app).listen(3000,'0.0.0.0');
 
 wsServer = new WebSocketServer({
     httpServer: server
-
-    var users = fb.child("users");
-    users.set({
-	PatrickPistor:{
-	    Password: "password"
-	},
-	ChrisTran:{
-	    Password: "password"
-	},
-	KevinKong:{
-	    Password: "password"
-	}
-    })
 });
 
 var history = [];
