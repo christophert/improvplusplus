@@ -29,6 +29,7 @@ app.use('/', express.static('public'));
 app.post('/login', function(req, res) {
     var info = {};
     info['username'] = req.body.username;
+    info['password'] = req.body.password;
     info['loginStatus'] = 'OK';
     res.send(JSON.stringify(info));
 });
