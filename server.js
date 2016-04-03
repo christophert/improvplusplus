@@ -122,7 +122,7 @@ wsServer.on('request', function(request) {
                 num_msgs++;
                 fb.child("num_msgs").set(num_msgs);
                 console.log(num_msgs);
-                if json_msg.message==="/view") {
+                if (json_msg.message==="/view") {
                     connection.sendUTF(JSON.stringify({"message": usernames, "username": "system"}))
                 }
                 for(var i = 0; i < clients.length; i++) {
