@@ -54,7 +54,7 @@ app.get('/get/username', function(req, res) {
     if(sess.user_id) {
         res.status(404).send(JSON.stringify({"status":404}));
     } else {
-        res.send(JSON.stringify({"username":req.session.user_id}))
+        res.send(JSON.stringify({"username":sess.user_id}))
     }
 });
 
