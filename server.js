@@ -33,11 +33,10 @@ wsServer.on('request', function(request) {
             username = json_msg.username;
             console.log(json_msg);
 	    
-	    
 	    var num_msgs = 0;
 	
 	    //get number of messages
-	    fb.on("num_msgs", function(snapshot) {
+	    fb.child("num_msgs").on("value", function(snapshot) {
 		num_msgs = snapshot.val();
 	    }, 
 	    function (errorObject) {
