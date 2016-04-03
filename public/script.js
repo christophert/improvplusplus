@@ -61,8 +61,6 @@ window.onload = function() {
   //   socketStatus.className = 'closed';
   // };
 
-
-
   // Send a message when the form is submitted.
   form.onsubmit = function(e) {
     e.preventDefault();
@@ -87,4 +85,10 @@ window.onload = function() {
 
     return false;
   };
+
+ $("#message").keypress(function(event) {
+    if(event.keyCode == '13') {
+        form.onsubmit();
+    }
+});
 };
