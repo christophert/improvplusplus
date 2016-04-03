@@ -49,18 +49,18 @@ window.onload = function() {
   // };
 
 
-    var json = {
-        "type": "register",
-        "username": document.getElementById('loggedIn').getAttribute('uid')
-    };
-    var message = JSON.stringify(json);
-    socket.send(message);
-    var json = {
-        "type": "online",
-        "username": document.getElementById('loggedIn').getAttribute('uid')
-    };
-    var message = JSON.stringify(json);
-    socket.send(message);
+    //var json = {
+        //"type": "register",
+        //"username": document.getElementById('loggedIn').getAttribute('uid')
+    //};
+    //var message = JSON.stringify(json);
+    //socket.send(message);
+    //var json = {
+        //"type": "online",
+        //"username": document.getElementById('loggedIn').getAttribute('uid')
+    //};
+    //var message = JSON.stringify(json);
+    //socket.send(message);
   // Send a message when the form is submitted.
   form.onsubmit = function(e) {
     e.preventDefault();
