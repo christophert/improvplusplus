@@ -1,6 +1,6 @@
 $.get("/get/username", function(data) {
     parsedData = JSON.parse(data);
-    $("#loggedIn").html("Welcome " + data.username);
+    $("#loggedIn").html("<a href=\"#\">Welcome " + data.username + "</a>");
     $("#login").hide();
     $("#signup").hide();
     $("#loggedIn").show();
