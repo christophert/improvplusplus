@@ -1,27 +1,14 @@
-var sys = require("sys"),
-my_http = require("http"),
-path = require("path"),
-url = require("url");
+
+var my_http = require("http");
+var url = require("url");
 
 var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 var server = my_http.createServer(function(request,response){
-    var my_path = url.parse(request.url).pathname;
-    var full_path = path.join(process.cwd(),my_path);
-    path.exists(full_path, function(exists){
-	      if(!exists){
-	          response.writeHeader(404, {"Content-Type": "text/plain"});
-	          response.write("404 Not Found\n");
-	          response.end();
-	      }
-	      else{
-	          // a reference here doesn't open a connection until r/w ops are invoked
-	          var fb = new Firebase("https://improvplusplus.firebaseio.com")
-	          
-	      }
-    });
+    var fb = new Firebase("https://improvplusplus.firebaseio.com");
+    //TODO serve front-end objects
 }).listen(3000,'0.0.0.0');
 
 wsServer = new WebSocketServer({
