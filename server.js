@@ -38,7 +38,7 @@ wsServer.on('request', function(request) {
 	
 	    //get number of messages
 	    fb.on("num_msgs", function(snapshot) {
-		num_msgs = snapshot.val());
+		num_msgs = snapshot.val();
 	    }, 
 	    function (errorObject) {
 		fb.child("num_msgs").set(1);
