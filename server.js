@@ -46,7 +46,7 @@ wsServer.on('request', function(request) {
 	    //TODO put message into firebase, see if message parts need to be picked out piece by piece`    
 
             for(var i = 0; i < clients.length; i++) {
-                clients[i].sendUTF(json_msg.message);
+                clients[i].sendUTF(obj);
             }
         }
     });
