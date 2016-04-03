@@ -135,7 +135,6 @@ wsServer.on('request', function(request) {
 
     connection.on('close', function(reasonCode, description) {
         usernames.splice(index, 1);
-        usernames = [];
         for(var i = 0; i < clients.length; i++) {
             clients[i].sendUTF(JSON.stringify({username: username, message: 'User disconnected.', date: (new Date()).getTime()}));
         }
