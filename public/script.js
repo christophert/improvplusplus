@@ -57,6 +57,7 @@ window.onload = function() {
     var json = {
         "message": messageField.value,
         "username": document.getElementById('loggedIn').getAttribute('uid')
+        "type": messageField.value
     };
     var message = JSON.stringify(json);
 
