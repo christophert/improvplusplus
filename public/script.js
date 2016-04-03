@@ -55,11 +55,11 @@ window.onload = function() {
     };
     var message = JSON.stringify(json);
     socket.send(message);
-    json = {
+    var json = {
         "type": "online",
         "username": document.getElementById('loggedIn').getAttribute('uid')
     };
-    message = JSON.stringify(json);
+    var message = JSON.stringify(json);
     socket.send(message);
   // Send a message when the form is submitted.
   form.onsubmit = function(e) {
