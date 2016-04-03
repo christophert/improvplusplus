@@ -1,4 +1,4 @@
-
+var deprecation_message = require("sys");
 var my_http = require("http");
 var url = require("url");
 
