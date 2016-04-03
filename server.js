@@ -26,7 +26,7 @@ var num_msgs = 0;
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
-app.use('/', express.static('public'));
+
 
 app.post('/login', function(req, res) {
     if(req.body.username !== ""  && req.body.password !== "") {
@@ -43,6 +43,8 @@ app.post('/login', function(req, res) {
         res.send(JSON.stringify(info));
     }
 });
+
+app.use('/', express.static('public'));
 
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
