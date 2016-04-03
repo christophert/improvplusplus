@@ -49,7 +49,7 @@ app.post('/login', function(req, res) {
 
 app.get('/get/username', function(req, res) {
     if(!req.session.user_id) {
-        req.send(JSON.stringify({"status":404}));
+        res.send(JSON.stringify({"status":404}));
     } else {
         res.send(JSON.stringify({"username":req.session.user_id}))
     }
