@@ -4,6 +4,7 @@ path = require("path"),
 url = require("url");
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
 var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
@@ -20,6 +21,15 @@ wsServer = new WebSocketServer({
 var history = [];
 var clients = [];
 var num_msgs = 0;
+
+app.use(express.urlencoded());
+
+app.post('/login', function(req, res) {
+    var info = {};
+    info[username] = req.body.username;
+    info[loginStatus] = 'OK';
+    res.send(JSON.stringify(info));
+});
 
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
