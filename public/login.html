@@ -106,10 +106,13 @@
         // Retrieve the message from the textarea.
         var json = {
           "username": messageField.value,
-          "password": messageField2.value
+          "password": messageField1.value
         };
         var message = JSON.stringify(json);
-        $.post( "/login", $("#sign-form").serialize() );
+        $.post( "/login", $("#sign-form").serialize() )
+            .done(function(data) {
+                alert("data returned: " + data);
+            });
         messageField.value = '';
         messageField1.value = '';
 
