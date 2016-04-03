@@ -29,7 +29,11 @@ users.set({
     }
 });
 
+var server = my_http.createServer(app).listen(3000,'0.0.0.0');
 
+wsServer = new WebSocketServer({
+    httpServer: server
+});
 
 var history = [];
 var clients = [];
@@ -45,25 +49,20 @@ app.use(session({
 var sess;
 
 app.post('/login', function(req, res) {
-    var info = {};
-    info['username'] = req.body.username;
-    info['password'] = req.body.password;
-
-    var auth = users.on("value", function(snapshot) {
-        if (snapshot.val().(req.body.username) === req.body.password) {
-            info['loginStatus'] = 'OK';
-	    req.session.user_id = req.body.username;
-	    res.send(JSON.stringify(info));
-        }
-        else {
-	    info['loginStatus'] = 'notFound';
-            res.status(404).send(JSON.stringify(info));
-	}
-    }, function (errorObject) {
-	var info = {};
-	info['loginStatus'] = 'notFound';
-	res.status(404).send(JSON.stringify(info));   
-    });
+    if(req.body.username !== ""  && req.body.password !== "") {
+        var info = {};
+        info['username'] = req.body.username;
+        info['password'] = req.body.password;
+        info['loginStatus'] = 'OK';
+        req.session.user_id = req.body.username;
+        req.session.save(function(err){});
+        res.send(JSON.stringify(info));
+    } else {
+        var info = {};
+        info['loginStatus'] = 'notFound';
+        res.status(404)
+            .send(JSON.stringify(info));
+    }
 });
 
 app.get('/get/username', function(req, res) {
@@ -80,12 +79,6 @@ app.get('/get/username', function(req, res) {
 });
 
 app.use('/', express.static('public'));
-
-var server = my_http.createServer(app).listen(3000,'0.0.0.0');
-
-wsServer = new WebSocketServer({
-    httpServer: server
-});
 
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
