@@ -101,18 +101,16 @@
       var messageField = document.getElementById('email');
       var messageField1 = document.getElementById('password');
 
-      var socket = new WebSocket('ws://ipp.chtr.us/login');
-
       form.onsubmit = function(e) {
         e.preventDefault();
 
         // Retrieve the message from the textarea.
         var json = {
           "username": messageField.value,
-          "password": messageField1.value
+          "password": messageField2.value
         };
         var message = JSON.stringify(json);
-        socket.send(message);
+        $.post( "/login", {"username": messageField.value, "password": messageField2.value} );
         messageField.value = '';
         messageField1.value = '';
 
