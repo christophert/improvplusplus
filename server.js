@@ -7,7 +7,7 @@ var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 var server = my_http.createServer(function(request,response){
-    //var fb = new Firebase("https://improvplusplus.firebaseio.com");
+    var fb = new Firebase("https://radiant-torch-7198.firebaseio.com");
     //TODO serve front-end objects
 }).listen(3000,'0.0.0.0');
 
