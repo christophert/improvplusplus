@@ -31,15 +31,19 @@ window.onload = function() {
    socket.onopen = function(event) {
   //   socketStatus.innerHTML = 'Connected to: ws://ipp.chtr.us';
   //   socketStatus.className = 'open';
+    $.get("/get/username", function(data) {
+        parsedData = JSON.parse(data);
+        username = parsedData.username;
+    });
     var json = {
         "type": "register",
-        "username": document.getElementById('loggedIn').getAttribute('uid')
+        "username": username
     };
     var message = JSON.stringify(json);
     socket.send(message);
     var json = {
         "type": "online",
-        "username": document.getElementById('loggedIn').getAttribute('uid')
+        "username": username
     };
     var message = JSON.stringify(json);
     socket.send(message);
