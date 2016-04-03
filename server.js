@@ -53,6 +53,7 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/get/username', function(req, res) {
+    console.log(req.sessionID);
     sessionStore.get(req.sessionID, function(error, session) {
         if(!session.user_id) {
             res.status(404).send(JSON.stringify({"status":404}));
