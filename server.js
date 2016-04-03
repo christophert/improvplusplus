@@ -36,6 +36,7 @@ app.post('/login', function(req, res) {
     } else {
         var info = {};
         info['loginStatus'] = 'notFound';
+        info['typeOfUsername'] = typeof req.body.username;
         res.send(JSON.stringify(info));
     }
 });
