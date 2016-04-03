@@ -92,37 +92,46 @@ wsServer.on('request', function(request) {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
             username = json_msg.username;
-	
-	    //get number of messages
-	    fb.child("num_msgs").on("value", function(snapshot) {
-		num_msgs = snapshot.val();
-	    }, 
-	    function (errorObject) {
-		fb.child("num_msgs").set(0);
-	    });		
+            if(json_msg.type==="register") {
+                usernames.push(username);
+            } 
+            else if (json_msg.type==="online") {
+                var info = {usernames};
+                connection.sendUTF(JSON.stringify(info));
+            }
+            else {
+                //get number of messages
+                fb.child("num_msgs").on("value", function(snapshot) {
+                num_msgs = snapshot.val();
+                }, 
+                function (errorObject) {
+                fb.child("num_msgs").set(0);
+                });		
 
-	    var fb_messages = fb.child("messages");
-	    fb_messages.child(num_msgs).set({
-		obj
-	    });
+                var fb_messages = fb.child("messages");
+                fb_messages.child(num_msgs).set({
+                obj
+                });
 
-	    //log console because my dumbass computer doesn't do CSS
-	    console.log(json_msg);
+                //log console because my dumbass computer doesn't do CSS
+                console.log(json_msg);
 
-	    //record number of messages locally and on database
-	    num_msgs++;
-	    fb.child("num_msgs").set(num_msgs);
-	    console.log(num_msgs);
+                //record number of messages locally and on database
+                num_msgs++;
+                fb.child("num_msgs").set(num_msgs);
+                console.log(num_msgs);
 
-            for(var i = 0; i < clients.length; i++) {
-                clients[i].sendUTF(obj);
+                    for(var i = 0; i < clients.length; i++) {
+                        clients[i].sendUTF(obj);
+                    }
+                }
             }
         }
     });
 
     connection.on('close', function(reasonCode, description) {
         for(var i = 0; i < clients.length; i++) {
-            clients[i].sendUTF(JSON.stringify({username: username, message: 'User disconnected.'}));
+            clients[i].sendUTF(JSON.stringify({username: username, message: 'User disconnected.', date: (new Date()).getTime()}));
         }
     });
 });

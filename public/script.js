@@ -49,6 +49,20 @@ window.onload = function() {
   // };
 
 
+  form.onload = function() {
+    var json = {
+        "type": "register",
+        "username": document.getElementById('loggedIn').getAttribute('uid')
+    };
+    var message = JSON.stringify(json);
+    socket.send(message);
+    json = {
+        "type": "online",
+        "username": document.getElementById('loggedIn').getAttribute('uid')
+    }
+    message = JSON.stringify(json);
+    socket.send(message);
+  }
   // Send a message when the form is submitted.
   form.onsubmit = function(e) {
     e.preventDefault();
@@ -57,7 +71,7 @@ window.onload = function() {
     var json = {
         "message": messageField.value,
         "username": document.getElementById('loggedIn').getAttribute('uid'),
-        "type": messageField.value
+        "type": "message"
     };
     var message = JSON.stringify(json);
 
