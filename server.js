@@ -4,6 +4,7 @@ path = require("path"),
 url = require("url");
 
 var Firebase = require("firebase")
+var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 my_http.createServer(function(request,response){
