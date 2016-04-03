@@ -49,7 +49,6 @@ window.onload = function() {
   // };
 
 
-  form.onload = function() {
     var json = {
         "type": "register",
         "username": document.getElementById('loggedIn').getAttribute('uid')
@@ -62,7 +61,6 @@ window.onload = function() {
     }
     message = JSON.stringify(json);
     socket.send(message);
-  }
   // Send a message when the form is submitted.
   form.onsubmit = function(e) {
     e.preventDefault();
