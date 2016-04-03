@@ -34,9 +34,9 @@ window.onload = function() {
 
   // Handle messages sent by the server.
   socket.onmessage = function(event) {
-    var message = JSON.parse(event.data);
+    var value = JSON.parse(event.data);
     messagesList.innerHTML += '<li class="media"><div class="media-body"><div class="media"><div class="media-body" >' +
-                               message.message + '<br /><small class="text-muted">'message.username'| 23rd June at 5:00pm</small><hr /></div></div></div></li>';
+                               value.message + '<br /><small class="text-muted">'+value.username+'| 23rd June at 5:00pm</small><hr /></div></div></div></li>';
   };
 
 
