@@ -36,6 +36,7 @@ wsServer = new WebSocketServer({
 
 var history = [];
 var clients = [];
+var usernames = [];
 var num_msgs = 0;
 var username = false;
 
@@ -86,7 +87,7 @@ app.use('/', express.static('public'));
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
     var index = clients.push(connection) - 1;
-    //var username = false;a
+    var userind = usernames.push(username) - 1;
     console.log(username);
     var result = false;
 
@@ -95,6 +96,8 @@ wsServer.on('request', function(request) {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
             //username = json_msg.username;
+            json_msg['username'] = username;
+            obj = JSON.stringify(json_msg);            
 	
 	    //get number of messages
 	    fb.child("num_msgs").on("value", function(snapshot) {
