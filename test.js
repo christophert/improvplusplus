@@ -3,6 +3,8 @@ my_http = require("http"),
 path = require("path"),
 url = require("url");
 
+var Firebase = require("Firebase")
+
 my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathme;
     var full_path = path.join(process.cwd(),my_path);
@@ -13,7 +15,10 @@ my_http.createServer(function(request,response){
 	          response.end();
 	      }
 	      else{
-	          //T
+	          //opens firebase connection (not sure if we need it right here,
+	          //just for reference's sake)
+	          var fb = new Firebase("https://improvplusplus.firebaseio.com")
+	          
 	      }
     });
 })
