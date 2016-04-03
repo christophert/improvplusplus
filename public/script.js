@@ -28,10 +28,22 @@ window.onload = function() {
 
 
   // // Show a connected message when the WebSocket is opened.
-  // socket.onopen = function(event) {
+   socket.onopen = function(event) {
   //   socketStatus.innerHTML = 'Connected to: ws://ipp.chtr.us';
   //   socketStatus.className = 'open';
-  // };
+    var json = {
+        "type": "register",
+        "username": document.getElementById('loggedIn').getAttribute('uid')
+    };
+    var message = JSON.stringify(json);
+    socket.send(message);
+    var json = {
+        "type": "online",
+        "username": document.getElementById('loggedIn').getAttribute('uid')
+    };
+    var message = JSON.stringify(json);
+    socket.send(message);
+   };
 
 
   // Handle messages sent by the server.
@@ -49,18 +61,7 @@ window.onload = function() {
   // };
 
 
-    //var json = {
-        //"type": "register",
-        //"username": document.getElementById('loggedIn').getAttribute('uid')
-    //};
-    //var message = JSON.stringify(json);
-    //socket.send(message);
-    //var json = {
-        //"type": "online",
-        //"username": document.getElementById('loggedIn').getAttribute('uid')
-    //};
-    //var message = JSON.stringify(json);
-    //socket.send(message);
+
   // Send a message when the form is submitted.
   form.onsubmit = function(e) {
     e.preventDefault();
@@ -85,5 +86,4 @@ window.onload = function() {
 
     return false;
   };
-
 };
