@@ -36,6 +36,7 @@ wsServer = new WebSocketServer({
 
 var history = [];
 var clients = [];
+var usernames = [];
 var num_msgs = 0;
 
 app.use(bodyParser.urlencoded());
