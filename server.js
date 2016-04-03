@@ -3,7 +3,7 @@ my_http = require("http"),
 path = require("path"),
 url = require("url");
 
-var Firebase = require("Firebase")
+var Firebase = require("firebase")
 
 my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathme;
