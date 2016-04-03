@@ -94,7 +94,7 @@ wsServer.on('request', function(request) {
         if(message.type === 'utf8') {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
-            username = json_msg.username;
+            //username = json_msg.username;
 	
 	    //get number of messages
 	    fb.child("num_msgs").on("value", function(snapshot) {
