@@ -33,7 +33,7 @@ window.onload = function() {
   //   socketStatus.className = 'open';
     $.get("/get/username", function(data) {
         parsedData = JSON.parse(data);
-        username = parsedData.username;
+        var username = parsedData.username;
     });
     var json = {
         "type": "register",
