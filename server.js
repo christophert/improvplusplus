@@ -8,7 +8,7 @@ var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 var server = my_http.createServer(function(request,response){
-    var my_path = url.parse(request.url).pathme;
+    var my_path = url.parse(request.url).pathname;
     var full_path = path.join(process.cwd(),my_path);
     path.exists(full_path, function(exists){
 	      if(!exists){
@@ -42,7 +42,9 @@ wsServer.on('request', function(request) {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
             console.log(json_msg);
-        
+
+	    
+
             for(var i = 0; i < clients.length; i++) {
                 clients[i].sendUTF(json_msg);
             }
