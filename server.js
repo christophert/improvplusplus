@@ -30,14 +30,16 @@ app.use(session({
     secret: 'keyboard cat'
 }));
 
+var sess;
 
 app.post('/login', function(req, res) {
     if(req.body.username !== ""  && req.body.password !== "") {
+        sess = req.session;
         var info = {};
         info['username'] = req.body.username;
         info['password'] = req.body.password;
         info['loginStatus'] = 'OK';
-        req.session.user_id = req.body.username;
+        sess.user_id = req.body.username;
         res.send(JSON.stringify(info));
     } else {
         var info = {};
@@ -48,7 +50,8 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/get/username', function(req, res) {
-    if(!req.session.user_id) {
+    sess = req.session;
+    if(sess.user_id) {
         res.status(404).send(JSON.stringify({"status":404}));
     } else {
         res.send(JSON.stringify({"username":req.session.user_id}))
