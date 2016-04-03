@@ -40,14 +40,15 @@ wsServer.on('request', function(request) {
 		num_msgs = snapshot.val();
 	    }, 
 	    function (errorObject) {
-		fb.child("num_msgs").set(1);
-		num_msgs++;
+		fb.child("num_msgs").set(0);
 	    });		
 
 	    var fb_messages = fb.child("messages");
-	    fb_messages.child(0).set({
-		message
+	    fb_messages.child(num_msgs).set({
+		message;
 	    });
+	    console.log(message);
+	    num_msgs++;
 
             for(var i = 0; i < clients.length; i++) {
                 clients[i].sendUTF(obj);
