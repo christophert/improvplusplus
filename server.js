@@ -13,7 +13,6 @@ var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 var fb = new Firebase("improvplusplus.firebaseIO.com");
-var sessionStore = new session.MemoryStore();
 
 
 var users = fb.child("users");
@@ -58,15 +57,18 @@ app.use(stormpath.init(app, {
     }
 }));
 
-app.get('/get/username', stormpath.getUser, function(req, res) {
-    res.send(JSON.stringify({"username": req.user.email}));
-});
+
 
 app.on('stormpath.ready', function() {
     console.log('stormpath ready');
 });
 
 var sess;
+
+app.get('/get/username', stormpath.getUser, function(req, res) {
+    res.send(JSON.stringify({"username": req.user.email}));
+});
+
 
 app.use('/', express.static('public'));
 
