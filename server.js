@@ -28,7 +28,7 @@ my_http.createServer(function(request,response){
 }).listen(3000,'0.0.0.0');
 
 wsServer = new WebSocketServer({
-    httpServer: server
+    httpServer: my_http
 });
 
 var history = [];
@@ -53,6 +53,6 @@ wsServer.on('request', function(request) {
     });
 
     connection.on('close', function(reasonCode, description) {
-        clients[i].sendUTF(JSON.stringify({message: 'User ',connection.remoteAddress,' disconnected.'}));
+        clients[i].sendUTF(JSON.stringify({message: 'User disconnected.'}));
     });
 });
