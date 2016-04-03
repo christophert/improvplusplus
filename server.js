@@ -34,12 +34,11 @@ app.post('/login', function(req, res) {
         info['username'] = req.body.username;
         info['password'] = req.body.password;
         info['loginStatus'] = 'OK';
-        res.cookie('username', req.body.username, {maxAge: 3652});
-        res.send(JSON.stringify(info));
+        req.session.userid = req.body.username;
+        res.redirect('/');
     } else {
         var info = {};
         info['loginStatus'] = 'notFound';
-        info['typeOfUsername'] = typeof req.body.username;
         res.send(JSON.stringify(info));
     }
 });
