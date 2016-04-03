@@ -13,6 +13,7 @@ var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 var fb = new Firebase("improvplusplus.firebaseIO.com");
+var sessionStore = new session.MemoryStore();
 
 var server = my_http.createServer(app).listen(3000,'0.0.0.0');
 
@@ -40,9 +41,11 @@ var num_msgs = 0;
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({
+    store: sessionStore,
     secret: 'keyboard cat'
 }));
 
+var sess;
 
 app.post('/login', function(req, res) {
     var info = {};
@@ -67,11 +70,15 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/get/username', function(req, res) {
-    if(!req.session.user_id) {
-        res.status(404).send(JSON.stringify({"status":404}));
-    } else {
-        res.send(JSON.stringify({"username":req.session.user_id}))
-    }
+    console.log(req.sessionID);
+    sessionStore.get(req.sessionID, function(error, session) {
+        if(!session.user_id) {
+            res.status(404).send(JSON.stringify({"status":404}));
+        } else {
+            res.send(JSON.stringify({"username":session.user_id}))
+        }
+    });
+
 });
 
 app.use('/', express.static('public'));
