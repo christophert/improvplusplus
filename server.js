@@ -97,7 +97,7 @@ wsServer.on('request', function(request) {
                 usernames.push(username);
             } 
             else if (json_msg.type==="online") {
-                var info = {"usernames": usernames, "username": "system"};
+                var info = {"message": usernames, "username": "system"};
                 connection.sendUTF(JSON.stringify(info));
             }
             else {
