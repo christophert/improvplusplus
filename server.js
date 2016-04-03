@@ -22,16 +22,22 @@ var history = [];
 var clients = [];
 var num_msgs = 0;
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 app.use('/', express.static('public'));
 
 app.post('/login', function(req, res) {
-    var info = {};
-    info['username'] = req.body.username;
-    info['password'] = req.body.password;
-    info['loginStatus'] = 'OK';
-    res.send(JSON.stringify(info));
+    if(typeof req.body.username !== 'undefined' && typeof req.body.password !== 'undefined') {
+        var info = {};
+        info['username'] = req.body.username;
+        info['password'] = req.body.password;
+        info['loginStatus'] = 'OK';
+        res.send(JSON.stringify(info));
+    } else {
+        var info = {};
+        info['loginStatus'] = 'notFound';
+        res.send(JSON.stringify(info));
+    }
 });
 
 wsServer.on('request', function(request) {
