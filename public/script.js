@@ -1,5 +1,5 @@
 $.get("/get/username", function(data) {
-    parsedData = JSON.parse(data);
+    parsedData = JSON.stringify(data);
     $("#loggedIn").html("<a href=\"#\">Welcome " + data.username + "</a>");
     $("#login").hide();
     $("#signup").hide();
