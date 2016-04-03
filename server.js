@@ -45,7 +45,7 @@ wsServer.on('request', function(request) {
 
 	    var fb_messages = fb.child("messages");
 	    fb_messages.child(num_msgs).set({
-		message;
+		message
 	    });
 	    console.log(message);
 	    num_msgs++;
