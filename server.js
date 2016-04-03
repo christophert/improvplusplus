@@ -96,7 +96,7 @@ wsServer.on('request', function(request) {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
             //username = json_msg.username;
-            json_msg['username'] = username;
+            json_msg['username'] = usernames[userind];
             obj = JSON.stringify(json_msg);            
 	
 	    //get number of messages
