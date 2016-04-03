@@ -27,9 +27,6 @@ var num_msgs = 0;
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({
-    genid: function(req) {
-        return genuuid()
-    },
     secret: 'keyboard cat'
 }));
 
