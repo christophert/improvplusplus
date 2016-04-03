@@ -1,5 +1,6 @@
 $.get("/get/username", function(data) {
     parsedData = JSON.parse(data);
+    $("#loggedIn").attr("uid", parsedData.username);
     $("#loggedIn").html("<a uid=\""+parsedData.username+"\" href=\"#\">" + parsedData.username + "</a>");
     //$("#logout").html("<form method=\"post\" action=\"/logout\"><a><button type=\"submit\">Logout</button></a></form>");
     $("#login").hide();
