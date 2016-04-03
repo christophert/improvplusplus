@@ -88,7 +88,7 @@ wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
     var index = clients.push(connection) - 1;
     var userind = usernames.push(username) - 1;
-    var username = username[userind];
+    var username = usernames[userind];
     console.log(username);
     var result = false;
 
