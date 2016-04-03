@@ -55,6 +55,7 @@ app.post('/login', function(req, res) {
         info['password'] = req.body.password;
         info['loginStatus'] = 'OK';
         req.session.user_id = req.body.username;
+        req.session.save(function(err){});
         res.send(JSON.stringify(info));
     } else {
         var info = {};
