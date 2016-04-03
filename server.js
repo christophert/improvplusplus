@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use('/', express.static('public'));
 
 app.post('/login', function(req, res) {
-    if(req.body.username && req.body.password) {
+    if(req.body.username !== ""  && req.body.password !== "") {
         var info = {};
         info['username'] = req.body.username;
         info['password'] = req.body.password;
