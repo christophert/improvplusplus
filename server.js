@@ -6,6 +6,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
@@ -25,7 +26,12 @@ var num_msgs = 0;
 
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-
+app.use(session({
+    genid: function(req) {
+        return genuuid()
+    },
+    secret: 'keyboard cat'
+}));
 
 
 app.post('/login', function(req, res) {
