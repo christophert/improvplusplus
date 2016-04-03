@@ -24,6 +24,8 @@ var num_msgs = 0;
 
 app.use(bodyParser.urlencoded());
 
+app.use('/', express.static('public'));
+
 app.post('/login', function(req, res) {
     var info = {};
     info[username] = req.body.username;
