@@ -22,7 +22,7 @@ var history = [];
 var clients = [];
 var num_msgs = 0;
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 app.use('/', express.static('public'));
 
