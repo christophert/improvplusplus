@@ -38,7 +38,7 @@ window.onload = function() {
   socket.onmessage = function(event) {
     var value = JSON.parse(event.data);
     messagesList.innerHTML += '<li class="media"><div class="media-body"><div class="media"><div class="media-body" >' +
-                               value.message + '<br /><small class="text-muted">'+value.username+'| 23rd June at 5:00pm</small><hr /></div></div></div></li>';
+                               value.message + '<br /><small class="text-muted">'+value.username+'| '+new Date($.now());+'</small><hr /></div></div></div></li>';
   };
 
 
