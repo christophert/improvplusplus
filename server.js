@@ -53,7 +53,7 @@ app.post('/login', function(req, res) {
     info['username'] = req.body.username;
     info['password'] = req.body.password;
 
-    var auth = fb.child("users").child(req.body.username).on("value", function(snapshot) {
+    var auth = users.child(req.body.username).on("value", function(snapshot) {
         if (snapshot.val() === req.body.password) {
             info['loginStatus'] = 'OK';
 	    req.session.user_id = req.body.username;
