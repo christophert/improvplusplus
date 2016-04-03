@@ -13,7 +13,7 @@ var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 var fb = new Firebase("improvplusplus.firebaseIO.com");
-var sessionStore = new express.session.MemoryStore();
+var sessionStore = new session.MemoryStore();
 
 var server = my_http.createServer(app).listen(3000,'0.0.0.0');
 
