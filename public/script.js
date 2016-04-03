@@ -88,7 +88,7 @@ window.onload = function() {
 
  $("#message").keypress(function(event) {
     if(event.keyCode == '13') {
-        form.onsubmit();
+        form.onsubmit(event);
     }
 });
 };
