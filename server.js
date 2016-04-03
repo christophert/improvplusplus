@@ -50,12 +50,14 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/get/username', function(req, res) {
-    sess = req.session;
-    if(!sess.user_id) {
-        res.status(404).send(JSON.stringify({"status":404}));
-    } else {
-        res.send(JSON.stringify({"username":sess.user_id}))
-    }
+    store.get(req.sessionID, function(error, session) {
+        if(!session.user_id) {
+            res.status(404).send(JSON.stringify({"status":404}));
+        } else {
+            res.send(JSON.stringify({"username":session.user_id}))
+        }
+    });
+
 });
 
 app.use('/', express.static('public'));
