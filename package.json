@@ -19,6 +19,7 @@
   "homepage": "https://github.com/christophert/improvplusplus#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "firebase": "^2.4.2",
     "request": "^2.69.0",

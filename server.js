@@ -5,6 +5,7 @@ url = require("url");
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
@@ -23,6 +24,7 @@ var clients = [];
 var num_msgs = 0;
 
 app.use(bodyParser.urlencoded());
+app.use(cookieParser());
 
 app.use('/', express.static('public'));
 
@@ -32,6 +34,7 @@ app.post('/login', function(req, res) {
         info['username'] = req.body.username;
         info['password'] = req.body.password;
         info['loginStatus'] = 'OK';
+        res.cookie('username', req.body.username, {maxAge: 3652});
         res.send(JSON.stringify(info));
     } else {
         var info = {};

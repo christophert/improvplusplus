@@ -112,8 +112,6 @@
         $.post( "/login", $("#sign-form").serialize() )
             .done(function(data) {
                 alert("data returned: " + data);
-                $.cookie('username', messageField.value, {expires: 3652});
-                window.location.href='/';
             });
         messageField.value = '';
         messageField1.value = '';
