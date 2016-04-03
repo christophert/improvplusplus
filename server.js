@@ -4,6 +4,7 @@ path = require("path"),
 url = require("url");
 
 var Firebase = require("firebase")
+var reqobj = require("request")
 
 my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathme;
@@ -25,3 +26,33 @@ my_http.createServer(function(request,response){
 my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathname;
 }).listen(3000,'0.0.0.0');
+
+wsServer = new WebSocketServer({
+    httpServer: server
+});
+
+var history = [];
+var clients = [];
+
+wsServer.on('request', function(request) {
+    var connection = request.accept(null, request.origin);
+    var index = clients.push(connection) - 1;
+    var username = false;
+    var result = false;
+
+    connection.on('message', function(message) {
+        if(message.type === 'utf8') {
+            var obj = message.utf8Data;
+            var json_msg = JSON.parse(obj);
+            console.log(json_msg);
+        
+            for(var i = 0; i < clients.length; i++) {
+                clients[i].sendUTF(json_msg);
+            }
+        }
+    });
+
+    connection.on('close', function(reasonCode, description) {
+        clients[i].sendUTF(JSON.stringify({message: 'User ',connection.remoteAddress,' disconnected.'}));
+    });
+});
