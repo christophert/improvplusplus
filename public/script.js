@@ -38,13 +38,13 @@ window.onload = function() {
     });
     var json = {
         "type": "register",
-        "username": username
+        "username": un
     };
     var message = JSON.stringify(json);
     socket.send(message);
     var json = {
         "type": "online",
-        "username": username
+        "username": un
     };
     var message = JSON.stringify(json);
     socket.send(message);
