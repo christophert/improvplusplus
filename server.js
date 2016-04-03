@@ -84,7 +84,8 @@ app.use('/', express.static('public'));
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
     var index = clients.push(connection) - 1;
-    var username = false;
+    var username = stormpath.getUser;
+    console.log(stormpath.getUser());
     var result = false;
 
     connection.on('message', function(message) {
