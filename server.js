@@ -43,7 +43,7 @@ wsServer.on('request', function(request) {
 	    function (errorObject) {
 		fb.child("num_msgs").set(1);
 		num_msgs++;
-	    }		
+	    });		
 
 	    var fb_messages = fb.child("messages");
 	    fb_messages.child(0).set({
