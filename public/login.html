@@ -110,9 +110,6 @@
         };
         var message = JSON.stringify(json);
         $.post( "/login", $("#sign-form").serialize() )
-            .done(function(data) {
-                alert("data returned: " + data);
-            });
         messageField.value = '';
         messageField1.value = '';
 
