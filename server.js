@@ -2,6 +2,8 @@ var sys = require("sys"),
 my_http = require("http"),
 path = require("path"),
 url = require("url");
+var express = require('express');
+var app = express();
 
 var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
@@ -9,9 +11,7 @@ var reqobj = require("request")
 
 var fb = new Firebase("improvplusplus.firebaseIO.com");
 
-var server = my_http.createServer(function(request,response){
-
-}).listen(3000,'0.0.0.0');
+var server = my_http.createServer(app).listen(3000,'0.0.0.0');
 
 wsServer = new WebSocketServer({
     httpServer: server
