@@ -19,6 +19,7 @@ wsServer = new WebSocketServer({
 
 var history = [];
 var clients = [];
+var num_msgs = 0;
 
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
@@ -31,8 +32,6 @@ wsServer.on('request', function(request) {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
             username = json_msg.username;
-	    
-	    var num_msgs = 0;
 	
 	    //get number of messages
 	    fb.child("num_msgs").on("value", function(snapshot) {
@@ -46,7 +45,11 @@ wsServer.on('request', function(request) {
 	    fb_messages.child(num_msgs).set({
 		obj
 	    });
+
+	    //log console because my dumbass computer doesn't do CSS
 	    console.log(json_msg);
+
+	    //record number of messages locally and on database
 	    num_msgs++;
 	    fb.child("num_msgs").set(num_msgs);
 	    console.log(num_msgs);
