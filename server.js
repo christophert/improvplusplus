@@ -40,6 +40,7 @@ app.post('/login', function(req, res) {
         info['password'] = req.body.password;
         info['loginStatus'] = 'OK';
         sess.user_id = req.body.username;
+        sess.save(function(err) {});
         res.send(JSON.stringify(info));
     } else {
         var info = {};
