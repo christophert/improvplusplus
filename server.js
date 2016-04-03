@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use('/', express.static('public'));
 
 app.post('/login', function(req, res) {
-    if(typeof req.body.username !== 'undefined' && typeof req.body.password !== 'undefined') {
+    if(req.body.username && req.body.password) {
         var info = {};
         info['username'] = req.body.username;
         info['password'] = req.body.password;
