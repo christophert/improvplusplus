@@ -10,7 +10,7 @@ var reqobj = require("request")
 var server = my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathname;
     var full_path = path.join(process.cwd(),my_path);
-    path.exists(full_path, function(exists){
+    fs.exists(full_path, function(exists){
 	      if(!exists){
 	          response.writeHeader(404, {"Content-Type": "text/plain"});
 	          response.write("404 Not Found\n");
@@ -43,7 +43,7 @@ wsServer.on('request', function(request) {
             var json_msg = JSON.parse(obj);
             console.log(json_msg);
 
-	    
+	    //TODO put message into firebase, see if message parts need to be picked out piece by piece`    
 
             for(var i = 0; i < clients.length; i++) {
                 clients[i].sendUTF(json_msg);
