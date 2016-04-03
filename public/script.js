@@ -31,7 +31,7 @@ window.onload = function() {
    socket.onopen = function(event) {
   //   socketStatus.innerHTML = 'Connected to: ws://ipp.chtr.us';
   //   socketStatus.className = 'open';
-    var un;
+    var un = document.getElementById('loggedIn').getAttribute('uid');
     $.get("/get/username", function(data) {
         parsedData = JSON.parse(data);
         un = parsedData.username;
