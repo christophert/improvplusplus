@@ -41,6 +41,7 @@ wsServer.on('request', function(request) {
         if(message.type === 'utf8') {
             var obj = message.utf8Data;
             var json_msg = JSON.parse(obj);
+            username = json_msg.username;
             console.log(json_msg);
 
             for(var i = 0; i < clients.length; i++) {
@@ -51,7 +52,7 @@ wsServer.on('request', function(request) {
 
     connection.on('close', function(reasonCode, description) {
         for(var i = 0; i < clients.length; i++) {
-            clients[i].sendUTF(JSON.stringify({message: 'User disconnected.'}));
+            clients[i].sendUTF(JSON.stringify({message: 'User ', username, 'disconnected.'}));
         }
     });
 });
