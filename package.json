@@ -1,0 +1,23 @@
+{
+  "name": "improvplusplus",
+  "version": "1.0.0",
+  "description": "README",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christophert/improvplusplus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christophert/improvplusplus/issues"
+  },
+  "homepage": "https://github.com/christophert/improvplusplus#readme",
+  "dependencies": {
+    "firebase": "^2.4.2"
+  }
+}
