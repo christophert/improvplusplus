@@ -99,7 +99,7 @@ wsServer.on('request', function(request) {
             else if (json_msg.type==="online") {
                 var info = {"message": usernames, "username": "system"};
                 console.log(info);
-                connection.sendUTF(JSON.stringify(info));
+                //connection.sendUTF(JSON.stringify(info));
             }
             else {
                 //get number of messages
