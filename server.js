@@ -7,7 +7,7 @@ var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
-my_http.createServer(function(request,response){
+var server = my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathme;
     var full_path = path.join(process.cwd(),my_path);
     path.exists(full_path, function(exists){
@@ -22,14 +22,10 @@ my_http.createServer(function(request,response){
 	          
 	      }
     });
-})
-
-my_http.createServer(function(request,response){
-    var my_path = url.parse(request.url).pathname;
 }).listen(3000,'0.0.0.0');
 
 wsServer = new WebSocketServer({
-    httpServer: my_http
+    httpServer: server
 });
 
 var history = [];
