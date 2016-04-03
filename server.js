@@ -38,7 +38,7 @@ app.post('/login', function(req, res) {
         info['password'] = req.body.password;
         info['loginStatus'] = 'OK';
         req.session.user_id = req.body.username;
-        res.redirect('/');
+        res.send(JSON.stringify(info));
     } else {
         var info = {};
         info['loginStatus'] = 'notFound';
