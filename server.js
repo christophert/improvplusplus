@@ -62,7 +62,7 @@ app.get('/get/username', stormpath.getUser, function(req, res) {
     res.send(JSON.stringify({"username": req.user.email}));
 });
 
-app.on('stormpath.ready' function() {
+app.on('stormpath.ready', function() {
     console.log('stormpath ready');
 });
 
