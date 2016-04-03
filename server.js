@@ -45,10 +45,11 @@ wsServer.on('request', function(request) {
 
 	    var fb_messages = fb.child("messages");
 	    fb_messages.child(num_msgs).set({
-		message
+		message.utf8Data
 	    });
 	    console.log(message);
 	    num_msgs++;
+	    fb.child("num_msgs").set(num_msgs);
 
             for(var i = 0; i < clients.length; i++) {
                 clients[i].sendUTF(obj);
