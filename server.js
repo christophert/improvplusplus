@@ -37,6 +37,7 @@ wsServer = new WebSocketServer({
 var history = [];
 var clients = [];
 var num_msgs = 0;
+var username = false;
 
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
@@ -75,6 +76,7 @@ app.on('stormpath.ready', function() {
 var sess;
 
 app.get('/get/username', stormpath.getUser, function(req, res) {
+    username = req.user.email;
     res.send(JSON.stringify({"username": req.user.email}));
 });
 
@@ -84,8 +86,8 @@ app.use('/', express.static('public'));
 wsServer.on('request', function(request) {
     var connection = request.accept(null, request.origin);
     var index = clients.push(connection) - 1;
-    var username = stormpath.getUser;
-    console.log(stormpath.getUser());
+    //var username = false;a
+    console.log(username);
     var result = false;
 
     connection.on('message', function(message) {
