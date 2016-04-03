@@ -25,4 +25,4 @@ my_http.createServer(function(request,response){
 my_http.createServer(function(request,response){
     var my_path = url.parse(request.url).pathname;
     load_file(my_path,response);
-}).listen(3000);
+}).listen(0.0.0.0:3000);
