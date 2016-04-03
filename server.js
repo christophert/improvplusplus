@@ -49,6 +49,20 @@ app.use(stormpath.init(app, {
     },
     application: {
         href: 'https://api.stormpath.com/v1/applications/1ZaIXY48DTOswO9TRiafxW'
+    },
+    web: {
+        register: {
+            form: {
+                fields: {
+                    givenName: {
+                        required: false
+                    },
+                    surname: {
+                        required: false
+                    }
+                }
+            }
+        }
     }
 }));
 
