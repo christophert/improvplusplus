@@ -1,27 +1,14 @@
-var sys = require("sys"),
-my_http = require("http"),
-path = require("path"),
-url = require("url");
+var deprecation_message = require("sys");
+var my_http = require("http");
+var url = require("url");
 
 var Firebase = require("firebase")
 var WebSocketServer = require('websocket').server;
 var reqobj = require("request")
 
 var server = my_http.createServer(function(request,response){
-    var my_path = url.parse(request.url).pathname;
-    var full_path = path.join(process.cwd(),my_path);
-    path.exists(full_path, function(exists){
-	      if(!exists){
-	          response.writeHeader(404, {"Content-Type": "text/plain"});
-	          response.write("404 Not Found\n");
-	          response.end();
-	      }
-	      else{
-	          // a reference here doesn't open a connection until r/w ops are invoked
-	          var fb = new Firebase("https://improvplusplus.firebaseio.com")
-	          
-	      }
-    });
+    var fb = new Firebase("https://radiant-torch-7198.firebaseio.com");
+    //TODO serve front-end objects
 }).listen(3000,'0.0.0.0');
 
 wsServer = new WebSocketServer({
@@ -43,6 +30,8 @@ wsServer.on('request', function(request) {
             var json_msg = JSON.parse(obj);
             username = json_msg.username;
             console.log(json_msg);
+
+	    //TODO put message into firebase, see if message parts need to be picked out piece by piece`    
 
             for(var i = 0; i < clients.length; i++) {
                 clients[i].sendUTF(obj);
